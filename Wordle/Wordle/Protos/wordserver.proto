@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option csharp_namespace = "Wordle.Protos";
+
+service DailyWord {
+  rpc GetWord (GetWordRequest) returns (GetWordResponse);
+  rpc ValidateWord (ValidateWordRequest) returns (ValidateWordResponse);
+}
+
+message GetWordRequest {
+  // getting a word
+}
+
+message GetWordResponse {
+  string word = 1;
+}
+
+message ValidateWordRequest {
+  string word = 1;
+}
+
+message ValidateWordResponse {
+  bool is_valid = 1;
+}
