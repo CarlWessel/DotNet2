@@ -8,7 +8,6 @@ namespace Wordle.Services
     public class WordServer : DailyWord.DailyWordBase
     {
         private readonly List<string> words;
-        private readonly Random random = new Random();
         private string dailyWord;
 
         public WordServer()
@@ -16,6 +15,10 @@ namespace Wordle.Services
             //string jsonPath = "wordle.json";
             string jsonPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "wordle.json");
             words = JsonSerializer.Deserialize<List<string>>(File.ReadAllText(jsonPath));
+
+            int dailyVal = int.Parse(DateTime.UtcNow.ToString("yyyyMMdd"));
+
+            Random random = new Random(dailyVal);
 
             dailyWord = words[random.Next(words.Count)];
         }
